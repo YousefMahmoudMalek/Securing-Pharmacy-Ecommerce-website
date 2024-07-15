@@ -1,11 +1,11 @@
 <?php
 session_start();
-if(isset($_POST["products"]) && isset($_SESSION["email_login"])){
+if (isset($_POST["products"]) && isset($_SESSION["email_login"])) {
     $products = json_decode($_POST["products"]);
     $email_login = $_SESSION["email_login"];
 
 
-    foreach($products as $product){
+    foreach ($products as $product) {
         $product_id = $product->productId;
         $quantity = $product->quantity;
 
@@ -15,7 +15,7 @@ if(isset($_POST["products"]) && isset($_SESSION["email_login"])){
         $servername = 'localhost';
         $username = 'root';
         $password = '';
-            
+
 
         // Create connection
         $con = new mysqli($servername, $username, $password, "pharmacy_db");
@@ -27,7 +27,7 @@ if(isset($_POST["products"]) && isset($_SESSION["email_login"])){
 
         //echo $update_cart;
 
-        if($con -> query($product_update) === FALSE || $con -> query($update_cart) === FALSE){
+        if ($con->query($product_update) === FALSE || $con->query($update_cart) === FALSE) {
             die("Failed to update");
         }
     }
@@ -35,8 +35,8 @@ if(isset($_POST["products"]) && isset($_SESSION["email_login"])){
     echo "Successfully updated";
 
 
-    
-}
-else echo "Invalid request";
+
+} else
+    echo "Invalid request";
 
 ?>

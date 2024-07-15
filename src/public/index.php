@@ -1,14 +1,17 @@
 <?php
+$pagesDirectory = "../private/pages/";
 
-$page = isset($_GET['page']) ? $_GET['page'] : 'home';
-$directory = "pages/";
-$files = glob($directory. "*.php");
-$fileName = $directory . $page . '.php';
+include ($pagesDirectory . "functions.php");
 
-if(in_array($fileName, $files)){
-    require($fileName);
-}
-else{
+$page = isset($_GET['url']) ? $_GET['url'] : 'home';
+
+
+$files = glob($pagesDirectory . "*.php");
+$fileName = $pagesDirectory . $page . '.php';
+
+if (in_array($fileName, $files)) {
+    require ($fileName);
+} else {
     echo "Page not found!";
     echo "Note to self: remeber to make this prettier";
 }

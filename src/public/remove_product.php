@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(isset($_POST["product_id"]) && isset($_SESSION["email_login"])){
+if (isset($_POST["product_id"]) && isset($_SESSION["email_login"])) {
     $product_id = $_POST["product_id"];
     $email_login = $_SESSION["email_login"];
     $cart_delete = "DELETE FROM cart where user_email='$email_login' and product_id=$product_id and checkedout=0";
@@ -9,7 +9,7 @@ if(isset($_POST["product_id"]) && isset($_SESSION["email_login"])){
     $servername = 'localhost';
     $username = 'root';
     $password = '';
-        
+
 
     // Create connection
     $con = new mysqli($servername, $username, $password, "pharmacy_db");
@@ -19,15 +19,15 @@ if(isset($_POST["product_id"]) && isset($_SESSION["email_login"])){
         die("Connection failed: " . $con->connect_error);
     }
 
-    if($con -> query($product_update) === FALSE){
+    if ($con->query($product_update) === FALSE) {
         die("Failed to remove");
     }
 
-    if($con -> query($cart_delete) === TRUE){
+    if ($con->query($cart_delete) === TRUE) {
         echo "Successfully removed";
-    }
-    else echo "Failed to remove";
-}
-else echo "Failed to remove";
+    } else
+        echo "Failed to remove";
+} else
+    echo "Failed to remove";
 
 ?>

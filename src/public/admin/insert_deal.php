@@ -7,20 +7,19 @@
 	<strong>Deal Count:</strong>
 	<input type="text" name="deal_count"><br><br>
 	<input type="submit" name="add_deal" value="Add Deal">
-	
-</form>	
+
+</form>
 
 <?php
 
-	include('includes/db.php');
-	if(!isset($_SESSION['user_email'])){
-	
+include ('includes/db.php');
+if (!isset($_SESSION['user_email'])) {
+
 	echo "<script>window.open('login.php?not_admin=You are not Admin','_self')</script>";
-}
-else {
+} else {
 
 
-	if(isset($_POST['add_deal'])){
+	if (isset($_POST['add_deal'])) {
 
 		$new_deal = $_POST['new_deal'];
 		$deal_cost = $_POST['deal_cost'];
@@ -30,11 +29,10 @@ else {
 
 		$run_deal = mysqli_query($con, $insert_deal);
 
-		if($run_deal){
+		if ($run_deal) {
 			echo "<script>alert('New Deal has been inserted')</script>";
 			echo "<script>window.open('index.php?insert_deal','_self')</script>";
 		}
 	}
 }
 ?>
-
